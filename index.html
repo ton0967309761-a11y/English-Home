@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>English Test Practice</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Prompt", sans-serif;
+      min-height: 100vh;
+
+      background:
+        radial-gradient(circle at 10% 10%, #dbeafe 0, transparent 35%),
+        radial-gradient(circle at 90% 20%, #fae8ff 0, transparent 30%),
+        radial-gradient(circle at 60% 90%, #dcfce7 0, transparent 30%),
+        #f8fafc;
+
+      color: #1e293b;
+      padding: 40px 18px 80px;
+    }
+
+    /* =========================
+       Background Decoration
+    ========================= */
+
+    .bubble {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(1px);
+      opacity: 0.5;
+      z-index: -1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .bubble1 {
+      width: 100px;
+      height: 100px;
+      background: #bfdbfe;
+      top: 8%;
+      left: 5%;
+    }
+
+    .bubble2 {
+      width: 80px;
+      height: 80px;
+      background: #fbcfe8;
+      top: 55%;
+      right: 4%;
+      animation-delay: 1s;
+    }
+
+    .bubble3 {
+      width: 120px;
+      height: 120px;
+      background: #bbf7d0;
+      bottom: 4%;
+      left: 12%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-18px);
+      }
+    }
+
+    /* =========================
+       Main Container
+    ========================= */
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* =========================
+       Header
+    ========================= */
+
+    .hero {
+      text-align: center;
+      margin-bottom: 38px;
+      animation: fadeUp 0.7s ease;
+    }
+
+    .mini-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      background: white;
+      border: 1px solid #e2e8f0;
+
+      padding: 8px 16px;
+      border-radius: 999px;
+
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+
+      font-size: 14px;
+      color: #64748b;
+
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      line-height: 1.25;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      color: #3b82f6;
+    }
+
+    .hero p {
+      color: #64748b;
+      font-size: 16px;
+      max-width: 680px;
+      margin: auto;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       Notice
+    ========================= */
+
+    .notice {
+      background: rgba(255, 255, 255, 0.82);
+
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+
+      border-radius: 22px;
+      padding: 18px 20px;
+
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+
+      margin-bottom: 32px;
+    }
+
+    .notice-icon {
+      min-width: 42px;
+      width: 42px;
+      height: 42px;
+
+      border-radius: 14px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #fef3c7;
+      font-size: 21px;
+    }
+
+    .notice h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .notice p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #64748b;
+    }
+
+    /* =========================
+       Tests
+    ========================= */
+
+    .tests {
+      display: grid;
+      gap: 22px;
+    }
+
+    .test-card {
+      position: relative;
+
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(15px);
+
+      border: 1px solid rgba(255, 255, 255, 0.9);
+
+      border-radius: 28px;
+      padding: 25px;
+
+      box-shadow: 0 15px 45px rgba(15, 23, 42, 0.07);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .test-card:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .test-card:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .test-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.11);
+    }
+
+    .test-card::after {
+      content: "";
+
+      position: absolute;
+      width: 160px;
+      height: 160px;
+
+      border-radius: 999px;
+
+      right: -70px;
+      top: -70px;
+
+      background: linear-gradient(
+        135deg,
+        rgba(96, 165, 250, 0.17),
+        rgba(168, 85, 247, 0.10)
+      );
+
+      pointer-events: none;
+    }
+
+    /* =========================
+       Test Header
+    ========================= */
+
+    .test-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+    .test-name {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .test-number {
+      width: 54px;
+      height: 54px;
+      min-width: 54px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 18px;
+
+      font-size: 23px;
+      font-weight: 700;
+
+      background: linear-gradient(
+        135deg,
+        #60a5fa,
+        #6366f1
+      );
+
+      color: white;
+
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.22);
+    }
+
+    .test-title h2 {
+      font-size: 21px;
+      margin-bottom: 3px;
+    }
+
+    .test-title p {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .status {
+      padding: 7px 13px;
+      border-radius: 999px;
+
+      font-size: 12px;
+      font-weight: 500;
+
+      white-space: nowrap;
+    }
+
+    .status.ready {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .status.progress {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    /* =========================
+       Link Buttons
+    ========================= */
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .action {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 16px;
+
+      text-decoration: none;
+
+      border-radius: 20px;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+      overflow: hidden;
+    }
+
+    .action:hover {
+      transform: translateY(-3px);
+    }
+
+    /* เนื้อหาการสอน */
+
+    .lesson {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .lesson:hover {
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
+      border-color: #93c5fd;
+    }
+
+    /* ข้อสอบ */
+
+    .exam {
+      background: #f5f3ff;
+      border: 1px solid #ede9fe;
+      color: #6d28d9;
+    }
+
+    .exam:hover {
+      box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+      border-color: #c4b5fd;
+    }
+
+    .action-icon {
+      width: 48px;
+      height: 48px;
+
+      min-width: 48px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: white;
+
+      border-radius: 15px;
+
+      font-size: 23px;
+
+      box-shadow: 0 5px 15px rgba(15, 23, 42, 0.06);
+    }
+
+    .action-text {
+      flex: 1;
+    }
+
+    .action-text small {
+      display: block;
+      font-size: 11px;
+      opacity: 0.7;
+      margin-bottom: 2px;
+    }
+
+    .action-text strong {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .arrow {
+      font-size: 20px;
+      transition: transform 0.25s ease;
+    }
+
+    .action:hover .arrow {
+      transform: translateX(5px);
+    }
+
+    /* =========================
+       Disabled / Coming soon
+    ========================= */
+
+    .disabled {
+      cursor: not-allowed;
+
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+
+      color: #94a3b8;
+
+      user-select: none;
+    }
+
+    .disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .disabled .action-icon {
+      filter: grayscale(1);
+      opacity: 0.7;
+    }
+
+    /* =========================
+       Footer
+    ========================= */
+
+    footer {
+      text-align: center;
+      margin-top: 35px;
+
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    .heart {
+      display: inline-block;
+      animation: heart 1.6s infinite;
+    }
+
+    @keyframes heart {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       Mobile
+    ========================= */
+
+    @media (max-width: 650px) {
+      body {
+        padding: 25px 13px 60px;
+      }
+
+      .hero {
+        margin-bottom: 25px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .test-card {
+        padding: 19px;
+        border-radius: 23px;
+      }
+
+      .test-head {
+        align-items: flex-start;
+      }
+
+      .test-number {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        border-radius: 15px;
+        font-size: 20px;
+      }
+
+      .test-title h2 {
+        font-size: 18px;
+      }
+
+      .status {
+        font-size: 10px;
+        padding: 6px 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+  <div class="bubble bubble3"></div>
+
+  <main class="container">
+
+    <!-- Header -->
+    <section class="hero">
+
+      <div class="mini-badge">
+        📚 English Practice
+      </div>
+
+      <h1>
+        เตรียมตัวก่อนทำ
+        <span>English Test</span> ✨
+      </h1>
+
+      <p>
+        จะมีข้อซ้ำและข้อเพิ่มเติมในแต่ละ Test ครับผม 😊
+        สามารถอ่านเนื้อหาการสอนก่อน
+        แล้วค่อยทดลองทำข้อสอบได้จากด้านล่างเลย
+      </p>
+
+    </section>
+
+    <!-- Notice -->
+    <section class="notice">
+
+      <div class="notice-icon">
+        💡
+      </div>
+
+      <div>
+        <h3>หมายเหตุ</h3>
+
+        <p>
+          เป็นเพียงการทดลองทำข้อจริงและเนื้อหาสำหรับใช้ในการฝึกฝน
+          หากมีการคิดหรือเฉลยผิดพลาดประการใด
+          ขออภัยไว้ ณ ที่นี้ด้วยครับ
+        </p>
+      </div>
+
+    </section>
+
+    <!-- Test List -->
+    <section class="tests">
+
+      <!-- =====================
+           TEST 1
+      ====================== -->
+
+      <article class="test-card">
+
+        <div class="test-head">
+
+          <div class="test-name">
+
+            <div class="test-number">
+              1
+            </div>
+
+            <div class="test-title">
+              <h2>English Test 1</h2>
+              <p>เรียนเนื้อหาก่อน แล้วลองทำข้อสอบ</p>
+            </div>
+
+          </div>
+
+          <div class="status ready">
+            ● พร้อมแล้ว
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          <!-- เนื้อหาการสอน Test 1 -->
+          <a
+            class="action lesson"
+            href="https://drive.google.com/file/d/1oPi426_X8AxWJvlGM6P1s5Yi32CpBsJm/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <div class="action-icon">
+              📚
+            </div>
+
+            <div class="action-text">
+              <small>เนื้อหาการสอน</small>
+              <strong>เรียนเนื้อหา Test 1</strong>
+            </div>
+
+            <div class="arrow">
+              →
+            </div>
+
+          </a>
+
+          <!-- ข้อสอบ Test 1 -->
+          <a
+            class="action exam"
+            href="https://ton0967309761-a11y.github.io/english-Test1/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <div class="action-icon">
+              📝
+            </div>
+
+            <div class="action-text">
+              <small>แบบทดสอบ</small>
+              <strong>ทำข้อสอบ Test 1</strong>
+            </div>
+
+            <div class="arrow">
+              →
+            </div>
+
+          </a>
+
+        </div>
+
+      </article>
+
+      <!-- =====================
+           TEST 2
+      ====================== -->
+
+      <article class="test-card">
+
+        <div class="test-head">
+
+          <div class="test-name">
+
+            <div class="test-number">
+              2
+            </div>
+
+            <div class="test-title">
+              <h2>English Test 2</h2>
+              <p>ข้อสอบพร้อมแล้ว เนื้อหาการสอนกำลังอัปเดต</p>
+            </div>
+
+          </div>
+
+          <div class="status progress">
+            ◷ กำลังอัปเดต
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          <!-- เนื้อหาการสอน Test 2 -->
+          <div class="action disabled">
+
+            <div class="action-icon">
+              📚
+            </div>
+
+            <div class="action-text">
+              <small>เนื้อหาการสอน</small>
+              <strong>เนื้อหา Test 2 — Coming Soon</strong>
+            </div>
+
+          </div>
+
+          <!-- ข้อสอบ Test 2 -->
+          <a
+            class="action exam"
+            href="https://ton0967309761-a11y.github.io/english-Test2/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <div class="action-icon">
+              📝
+            </div>
+
+            <div class="action-text">
+              <small>แบบทดสอบ</small>
+              <strong>ทำข้อสอบ Test 2</strong>
+            </div>
+
+            <div class="arrow">
+              →
+            </div>
+
+          </a>
+
+        </div>
+
+      </article>
+
+      <!-- =====================
+           TEST 3
+      ====================== -->
+
+      <article class="test-card">
+
+        <div class="test-head">
+
+          <div class="test-name">
+
+            <div class="test-number">
+              3
+            </div>
+
+            <div class="test-title">
+              <h2>English Test 3</h2>
+              <p>กำลังเตรียมเนื้อหาและแบบทดสอบเพิ่มเติม</p>
+            </div>
+
+          </div>
+
+          <div class="status progress">
+            ◷ Coming Soon
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          <!-- เนื้อหาการสอน Test 3 -->
+          <div class="action disabled">
+
+            <div class="action-icon">
+              📚
+            </div>
+
+            <div class="action-text">
+              <small>เนื้อหาการสอน</small>
+              <strong>เนื้อหา Test 3 — Coming Soon</strong>
+            </div>
+
+          </div>
+
+          <!-- ข้อสอบ Test 3 -->
+          <div class="action disabled">
+
+            <div class="action-icon">
+              📝
+            </div>
+
+            <div class="action-text">
+              <small>แบบทดสอบ</small>
+              <strong>ข้อสอบ Test 3 — Coming Soon</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      ขอให้ทุกคนทำข้อสอบได้คะแนนดี ๆ
+      <span class="heart">💙</span>
+    </footer>
+
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll("a.action");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+
+        button.style.transform = "scale(.97)";
+
+        setTimeout(() => {
+          button.style.transform = "";
+        }, 150);
+
+      });
+    });
+  </script>
+
+</body>
+</html>
